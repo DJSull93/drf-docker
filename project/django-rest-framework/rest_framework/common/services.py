@@ -1,10 +1,11 @@
 import pandas as pd
 import json
-from rest_framework.common.abstracts import PrinterBase, ReaderBase
+from rest_framework.common.abstracts import PrinterBase, ReaderBase, ScrapperBase
 import googlemaps
 pd.set_option('display.width', 1000)
 pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
+from selenium import webdriver
 
 
 class Printer(PrinterBase):
@@ -34,3 +35,11 @@ class Reader(ReaderBase):
 
     def gmaps(self) -> object:
         return googlemaps.Client(key='')
+
+class Scrapper(ScrapperBase):
+
+    def driver(self) -> object:
+        return webdriver.Chrome('usr/local/bin/chromedriver')
+
+    def aouto_login(self) -> object:
+        pass
