@@ -42,7 +42,7 @@ class Token(models.Model):
 
 class TokenProxy(Token):
     """
-    Proxy mapping pk to user pk for use in admin.
+    Proxy mapping pk to user pk for use in mywork.
     """
     @property
     def pk(self):

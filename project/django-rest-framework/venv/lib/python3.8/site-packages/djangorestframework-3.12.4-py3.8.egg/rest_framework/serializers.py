@@ -1365,7 +1365,7 @@ class ModelSerializer(Serializer):
 
         else:
             # Guard against the possible misspelling `readonly_fields` (used
-            # by the Django admin and others).
+            # by the Django mywork and others).
             assert not hasattr(self.Meta, 'readonly_fields'), (
                 'Serializer `%s.%s` has field `readonly_fields`; '
                 'the correct spelling for the option is `read_only_fields`.' %

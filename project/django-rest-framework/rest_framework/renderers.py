@@ -735,8 +735,8 @@ class BrowsableAPIRenderer(BaseRenderer):
 
 
 class AdminRenderer(BrowsableAPIRenderer):
-    template = 'rest_framework/admin.html'
-    format = 'admin'
+    template = 'rest_framework/mywork.html'
+    format = 'mywork'
 
     def render(self, data, accepted_media_type=None, renderer_context=None):
         self.accepted_media_type = accepted_media_type or ''
@@ -760,7 +760,7 @@ class AdminRenderer(BrowsableAPIRenderer):
         context = self.get_context(data, accepted_media_type, renderer_context)
         ret = template.render(context, request=renderer_context['request'])
 
-        # Creation and deletion should use redirects in the admin style.
+        # Creation and deletion should use redirects in the mywork style.
         if response.status_code == status.HTTP_201_CREATED and 'Location' in response:
             response.status_code = status.HTTP_303_SEE_OTHER
             response['Location'] = request.build_absolute_uri()

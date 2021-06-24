@@ -207,13 +207,13 @@ def format_value(value):
         return mark_safe('<code>%s</code>' % {True: 'true', False: 'false', None: 'null'}[value])
     elif isinstance(value, list):
         if any(isinstance(item, (list, dict)) for item in value):
-            template = loader.get_template('rest_framework/admin/list_value.html')
+            template = loader.get_template('rest_framework/mywork/list_value.html')
         else:
-            template = loader.get_template('rest_framework/admin/simple_list_value.html')
+            template = loader.get_template('rest_framework/mywork/simple_list_value.html')
         context = {'value': value}
         return template.render(context)
     elif isinstance(value, dict):
-        template = loader.get_template('rest_framework/admin/dict_value.html')
+        template = loader.get_template('rest_framework/mywork/dict_value.html')
         context = {'value': value}
         return template.render(context)
     elif isinstance(value, str):

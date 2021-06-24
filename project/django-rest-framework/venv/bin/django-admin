@@ -1,5 +1,5 @@
 #!/Users/djsull93/new_work/drf-docker/project/django-rest-framework/venv/bin/python
-# EASY-INSTALL-ENTRY-SCRIPT: 'Django==3.2.4','console_scripts','django-admin'
+# EASY-INSTALL-ENTRY-SCRIPT: 'Django==3.2.4','console_scripts','django-mywork'
 import re
 import sys
 
@@ -30,4 +30,4 @@ globals().setdefault('load_entry_point', importlib_load_entry_point)
 
 if __name__ == '__main__':
     sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
-    sys.exit(load_entry_point('Django==3.2.4', 'console_scripts', 'django-admin')())
+    sys.exit(load_entry_point('Django==3.2.4', 'console_scripts', 'django-mywork')())

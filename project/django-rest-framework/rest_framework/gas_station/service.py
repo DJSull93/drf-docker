@@ -5,6 +5,7 @@ import numpy as np
 import folium
 from selenium import webdriver
 from glob import glob
+import re
 '''
 문제 정의
 셀프 주유소는 정말 저렴한가
@@ -27,8 +28,8 @@ class GasStation(Reader):
         f.url = 'https://www.opinet.co.kr/searRgSelect.do'
         driver = s.driver()
 
-        gu_list_raw = driver.find_element_by_xpath("""//*[@id="SIGUNGU_NMG""")
-        gu_list = gu_list_raw.find_element_by_xpath
+        gu_list_raw = driver.find_element_by_xpath("""//*[@id="coolbeat"]""")
+        gu_list = gu_list_raw.find_elements_by_tag_name("option")
         gu_names = [option.gas_attribute("value") for option in gu_list]
         gu_names.remove("")
 

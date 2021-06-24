@@ -52,7 +52,7 @@ def pytest_configure(config):
             'django.contrib.messages.middleware.MessageMiddleware',
         ),
         INSTALLED_APPS=(
-            'django.contrib.admin',
+            'django.contrib.mywork',
             'django.contrib.auth',
             'django.contrib.contenttypes',
             'django.contrib.sessions',

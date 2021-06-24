@@ -139,7 +139,7 @@ class IsAuthenticated(BasePermission):
 
 class IsAdminUser(BasePermission):
     """
-    Allows access only to admin users.
+    Allows access only to mywork users.
     """
 
     def has_permission(self, request, view):
