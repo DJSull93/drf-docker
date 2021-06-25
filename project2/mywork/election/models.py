@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from matplotlib import rc
 from django.db import models
 import numpy as np
 import folium
@@ -51,6 +52,8 @@ class Election_19th(Reader):
         vmin, vmax = -tmp_max, tmp_max
         mapdata = elec.pivot_table(index='y', columns='x', values=tar_dara)
         masked_mapdata = np.ma.masked_where(np.isnan(mapdata), mapdata)
+        plt.rc('font', family='AppleGothic')
+        plt.rcParams['axes.unicode_minus'] = False
         plt.figure(figsize=(9, 11))
         plt.pcolor(masked_mapdata, vmin=vmin, vmax=vmax, cmap=campname,
                    edgecolor='#aaaaaa', linewidth=0.5)
@@ -105,7 +108,7 @@ class Election_19th(Reader):
                        columns=[pop_folium.index, pop_folium[tar_data]],
                        fill_color='YlGnBu',  # PuRd, YlGnBu
                        key_on='feature.id')
-        map.save(f'./data_saved/election{tar_data}.html')
+        map.save(f'./data_saved/election_{tar_data}.html')
 
 
     @staticmethod
