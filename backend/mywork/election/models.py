@@ -139,9 +139,3 @@ class Election_19th(Reader):
                 continue
 
 Election_19th.main()
-
-'''
-if __name__ == '__main__':
-    e = Election_19th()
-    e.draw_data('moon_vs_hong', 'RdBu')
-'''
