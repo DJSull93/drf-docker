@@ -4,4 +4,4 @@ from rest_framework.views import APIView
 
 class Hello(APIView):
     def get(self, request):
-        return Response({'greetiong': 'Hello World !!'})
+        return Response({'connection': 'SUCCESS'})
