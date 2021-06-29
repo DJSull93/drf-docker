@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import { Button, AppBar } from '@material-ui/core';
-
+import React, {useEffect, useState} from 'react'
+import axios from 'axios';
+import { Button } from '@material-ui/core';
 
 const Home = ({children}) => { 
 
-    const [ connection, setConnection ] = useState(false)
-    
+    const [connection, setConnection] = useState(false)
     const handleClick = e => {
         e.preventDefault()
         axios({
@@ -17,23 +15,18 @@ const Home = ({children}) => {
             setConnection(res.data.connection === 'SUCCESS')
         });
     }
-    
     return (<>
     <table className="tab_lay">
-        <tr><td><h1> HOME </h1></td></tr>
-        <tr><td><Button color="Pprimary" onClick={handleClick}>서버 연결 테스트</Button></td></tr>
-        <tr><td>{ "connection" ?
-        '연결상태입니다.'
-        : 
-        '연결상태가 아닙니다.'
-        }</td></tr>
+        <tr><td><h1>홈</h1></td></tr>
+        <tr><td><Button color="primary" onClick={handleClick}>서버 연결 테스트</Button></td></tr>
+        <tr><td>{ connection ?
+        '연결상태 입니다.'
+         : 
+        '연결상태가 아닙니다.' 
+         }</td></tr>
     </table>
     {children}
-    </>)}
 
+</>)}
 
 export default Home
-
-export const Counter = () => {
-    return (<></>)
-}
