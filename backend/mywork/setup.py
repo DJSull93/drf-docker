@@ -34,9 +34,9 @@ setup(
     scripts=['manage.py'],
     entry_points={
         'console_scripts': [
-            'publish = mywork.common.script:main',
-            'scan = mywork.crime.script:main',
-            'update = mywork.gas_station.script:main',
+            'publish = common.script:main',
+            'scan = crime.script:main',
+            'update = gas_station.script:main',
             ],
         },
     )
