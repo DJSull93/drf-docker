@@ -4,7 +4,6 @@ import folium
 import json
 import warnings
 from common.models import FileDTO, Printer, Reader
-from matplotlib import font_manager
 
 
 class Election_19th(Reader):
@@ -51,10 +50,7 @@ class Election_19th(Reader):
         vmin, vmax = -tmp_max, tmp_max
         mapdata = elec.pivot_table(index='y', columns='x', values=tar_dara)
         masked_mapdata = np.ma.masked_where(np.isnan(mapdata), mapdata)
-        # plt.rc('font', family='NanumGothic')
-        plt.rc('font', family=font_manager
-           .FontProperties(fname='C:/Windows/Fonts/H2GTRM.TTF')
-           .get_name())
+        plt.rc('font', family='AppleGothic')
         plt.rcParams['axes.unicode_minus'] = False
         plt.figure(figsize=(9, 11))
         plt.pcolor(masked_mapdata, vmin=vmin, vmax=vmax, cmap=campname,
@@ -140,9 +136,6 @@ class Election_19th(Reader):
             else:
                 continue
 
-Election_19th.main()
-
-if __name__ == '__main__':
-    e = Election_19th()
-    e.draw_data('moon_vs_hong', 'RdBu')
 '''
+#Election_19th.main()
+

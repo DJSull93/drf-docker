@@ -53,13 +53,12 @@ class Service(Reader):
         r = self.r
         p = self.p
 
-        path = "c:/Windows/Fonts/malgun.ttf"
         from matplotlib import font_manager, rc
         if platform.system() == 'Darwin':
             rc('font', family='AppleGothic')
         elif platform.system() == 'Windows':
-            font_name = font_manager.FontProperties(fname=path).get_name()
-            rc('font', family=font_name)
+            font_name = font_manager.FontProperties(fname='AppleGothic').get_name()
+            rc('font', family='AppleGothic')
         else:
             print('Unknown system... sorry~~~~')
 

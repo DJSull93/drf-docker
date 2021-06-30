@@ -21,7 +21,7 @@ class Chicago():
     url_fix = []
     df = None
     url = 'https://www.chicagomag.com/Chicago-Magazine/November-2012/Best-Sandwiches-Chicago/'
-    driver_path = 'C:\Program Files\Google\Chrome\chromedriver'
+    driver_path = '/usr/local/bin/chromedriver'
 
 
     def scrap(self):
