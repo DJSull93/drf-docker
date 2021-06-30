@@ -45,10 +45,10 @@ export const StockMenu = () => (<nav>
 </nav>
 
 )
-export const BlogMenu = () => (<nav>
+export const BoardMenu = () => (<nav>
     <ol>
         <li><Link to='/post-list'>게시글 목록</Link></li>
-        <li><Link to='/post-register'>게시글 쓰기</Link></li>
+        <li><Link to='/postwrite'>게시글 쓰기</Link></li>
         <li><Link to='/post-retrieve'>게시글 조회</Link></li>
         <li><Link to='/post-detail'>게시글 상세</Link></li>
         <li><Link to='/post-modify'>게시글 수정</Link></li>

@@ -1,8 +1,8 @@
 # from django.shortcuts import render
 import tqdm
-from backend.nl_prcs.models import Reader, FileDTO, Printer
+from nl_prcs.models import Reader, FileDTO, Printer
 from icecream import ic
-from matplotlib import rc
+from matplotlib import font_manager, rc
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 import nltk
@@ -37,10 +37,12 @@ class NLService(Reader):
         stopwords = set(STOPWORDS)
         stopwords.add("said")
 
+        path = "c:/Windows/Fonts/malgun.ttf"
         if platform.system() == 'Darwin':
             rc('font', family='AppleGothic')
-        elif platform.system() == 'Mac':
-            rc('font', family='AppleGothic')
+        elif platform.system() == 'Windows':
+            font_name = font_manager.FontProperties(fname=path).get_name()
+            rc('font', family=font_name)
         else:
             print('Unknown system... sorry~~~~')
 
@@ -64,11 +66,13 @@ class NLService(Reader):
         r = self.r
         p = self.p
         f.context = './data/'
+        path = "c:/Windows/Fonts/malgun.ttf"
 
         if platform.system() == 'Darwin':
             rc('font', family='AppleGothic')
-        elif platform.system() == 'Mac':
-            rc('font', family='AppleGothic')
+        elif platform.system() == 'Windows':
+            font_name = font_manager.FontProperties(fname=path).get_name()
+            rc('font', family=font_name)
         else:
             print('Unknown system... sorry~~~~')
 
@@ -116,7 +120,9 @@ class NLService(Reader):
         plt.show()
 
         data = ko.vocab().most_common(300)
-        wordcloud = WordCloud(font_path='AppleGothic',
+        # for win : font_path='c:/Windows/Fonts/malgun.ttf'
+        # /Library/Fonts/AppleGothic.ttf
+        wordcloud = WordCloud(font_path=path,
                               relative_scaling=0.2,
                               # stopwords=STOPWORDS,
                               background_color='white',
@@ -133,7 +139,7 @@ class NLService(Reader):
 
         # for win : font_path='c:/Windows/Fonts/malgun.ttf'
         # /Library/Fonts/AppleGothic.ttf
-        wordcloud = WordCloud(font_path='AppleGothic',
+        wordcloud = WordCloud(font_path=path,
                               relative_scaling=0.1, mask=mask,
                               background_color='white',
                               min_font_size=1,

@@ -3,6 +3,7 @@ from common.models import FileDTO, Printer, Reader
 import numpy as np
 from PIL import Image
 
+
 @dataclass
 class FileDTO(FileDTO):
     img: str
@@ -32,3 +33,4 @@ class Reader(Reader):
 
     def img(self, image):
         return np.array(Image.open(f'{self.new_file(image)}'))
+

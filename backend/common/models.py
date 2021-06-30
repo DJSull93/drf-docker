@@ -1,21 +1,50 @@
 from django.db import models
-from dataclasses import dataclass
 from abc import *
-import pandas as pd
+from dataclasses import dataclass
 import json
+import pandas as pd
 import googlemaps
 from selenium import webdriver
 from icecream import ic
-pd.set_option('display.width', 1000)
-pd.set_option('display.max_rows', 500)
-pd.set_option('display.max_columns', 500)
 
+@dataclass
+class FileDTO(object):
+
+    context: str
+    fname: str
+    url: str
+    dframe: object
+
+
+    @property
+    def context(self) -> str: return self._context
+
+    @context.setter
+    def context(self, context):
+        self._context = context
+
+    @property
+    def fname(self) -> str: return self._fname
+
+    @fname.setter
+    def fname(self, fname): self._fname = fname
+
+    @property
+    def dframe(self) -> object: return self._dframe
+
+    @dframe.setter
+    def dframe(self, dframe): self._dframe = dframe
+
+    @property
+    def url(self) -> object: return self._url
+
+    @url.setter
+    def url(self, url): self._url = url
 
 class PrinterBase(metaclass=ABCMeta):
     @abstractmethod
     def dframe(self):
         pass
-
 
 class ReaderBase(metaclass=ABCMeta):
 
@@ -35,56 +64,19 @@ class ReaderBase(metaclass=ABCMeta):
     def json(self):
         pass
 
-
-class ScrapperBase(metaclass=ABCMeta):
+class ScraperBase(metaclass=ABCMeta):
 
     @abstractmethod
     def driver(self):
         pass
 
-@dataclass
-class FileDTO(object):
-
-    context: str
-    fname: str
-    url : str
-    dframe: object
-
-    @property # getter임
-    def context(self) -> str: return self._context
-
-    @context.setter # setter이며 따로 설정 이런 형식으로 함
-    def context(self, context): self._context = context
-
-    @property
-    def fname(self) -> str: return self._fname
-
-    @fname.setter
-    def fname(self, fname): self._fname = fname
-
-    @property
-    def dframe(self) -> str: return self._dframe
-
-    @dframe.setter
-    def dframe(self, dframe): self._dframe = dframe
-
-    @property
-    def url(self) -> str: return self._url
-
-    @url.setter
-    def url(self, url): self._url = url
-
-
 class Printer(PrinterBase):
 
     def dframe(self, this):
-        print('*' * 100)
-        print(f'1. target type is {type(this)}')
-        print(f'2. target colums is \n{this.columns}')
-        print(f'3. target TOP is \n{this.head()}')
-        print(f'4. target number of null is \n{this.isnull().sum()}')
-        print('*' * 100)
-
+        ic(type(this))
+        ic(this.columns)
+        ic(this.head())
+        ic(this.isnull().sum())
 
 class Reader(ReaderBase):
 
@@ -94,11 +86,11 @@ class Reader(ReaderBase):
     def csv(self, file) -> object:
         return pd.read_csv(f'{self.new_file(file)}.csv', encoding='UTF-8', thousands=',')
 
-    def csv_header(self, file, header) -> object:
-        return pd.read_csv(f'{self.new_file(file)}.csv', encoding='UTF-8', thousands=',', header=header)
-
     def xls(self, file, header, usecols) -> object:
         return pd.read_excel(f'{self.new_file(file)}.xls', header=header, usecols=usecols)
+
+    def csv_header(self, file, header) -> object:
+        return pd.read_csv(f'{self.new_file(file)}.csv', encoding='UTF-8', thousands=',', header=header)
 
     def json(self, file) -> object:
         return json.load(open(f'{self.new_file(file)}.json', encoding='UTF-8'))
@@ -106,10 +98,14 @@ class Reader(ReaderBase):
     def gmaps(self) -> object:
         return googlemaps.Client(key='')
 
-class Scrapper(ScrapperBase):
+class Scrapper(ScraperBase):
 
     def driver(self) -> object:
-        return webdriver.Chrome(executable_path='/usr/local/bin/chromedriver')
+        return webdriver.Chrome('C:/Program Files/Google/Chrome/chromedriver')
 
-    def aouto_login(self) -> object:
+    def auto_login(self):
         pass
+
+
+if __name__ == '__main__':
+    ic('test')
