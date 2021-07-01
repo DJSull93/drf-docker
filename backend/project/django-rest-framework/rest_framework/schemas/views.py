@@ -1,5 +1,5 @@
 """
-views.py        # Houses `SchemaView`, `APIView` subclass.
+views_cbv.py        # Houses `SchemaView`, `APIView` subclass.
 
 See schemas.__init__.py for package overview.
 """

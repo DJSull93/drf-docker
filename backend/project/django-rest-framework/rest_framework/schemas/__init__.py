@@ -6,7 +6,7 @@ schemas:
     generators.py   # Top-down schema generation
     inspectors.py   # Per-endpoint view introspection
     utils.py        # Shared helper functions
-    views.py        # Houses `SchemaView`, `APIView` subclass.
+    views_cbv.py        # Houses `SchemaView`, `APIView` subclass.
 
 We expose a minimal "public" API directly from `schemas`. This covers the
 basic use-cases:
