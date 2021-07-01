@@ -1,37 +1,34 @@
 import React,{useState} from 'react'
-import './SignUp.css'
-import { userSignUp } from 'api/index.js'
-//import { useHistory } from 'react-router'
-//import { Button } from '@material-ui/core';
-const SignUp = () => {
-  const [userInfo, setUserInfo] = useState({
+import '../styles/MemberRegister.css'
+import { memberRegister } from 'api'
+import { useHistory } from 'react-router'
+
+const MemberRegister = () => {
+  const history = useHistory()
+  const [MemberInfo, setMemberInfo] = useState({
     username: '',
     password: '',
     name: '',
     email: ''
   })
 
-  const {username, password, name, email} = userInfo
+  const {username, password, name, email} = `MemberInfo`
 
-  const handleChange = e => {
-    const { name, value } = e.target
-    setUserInfo({
-      ...userInfo,
-      [name]:value
-    })
-  }
 
   const handleSubmit = e => {
     e.preventDefault()
-    alert(`전송 클릭: ${JSON.stringify({...userInfo})}`)
-    userSignUp({...userInfo})
-    .then(res => {
+    alert(`전송 클릭: ${JSON.stringify({...MemberInfo})}`)
+    memberRegister({...MemberInfo})
+    .then((res) => {
       alert(`회원가입 완료 : ${res.data.result} `)
       // history.push('login')
     })
     .catch(err => {
       alert(`회원가입 실패 : ${err} `)
     })
+
+
+
   }
 
   const handleClick = e => {
@@ -39,8 +36,17 @@ const SignUp = () => {
     alert('취소 클릭')
   }
 
+  const handleChange = e => {
+    const { name, value } = e.target
+    setMemberInfo({
+      ...MemberInfo,
+      [name]: value
+    })
 
-  return (<>
+  }
+
+
+    return (<>
     <div className="Signup">
     <form onSubmit={handleSubmit} method="post" style={{border:"1px solid #ccc"}}>
       <div className="container">
@@ -60,7 +66,7 @@ const SignUp = () => {
         <label for="email"><b>Email</b></label>
         <input type="text" placeholder="Enter Email" onChange={handleChange}  name="email" value={email} />
 
-        <p>By creating an account you agree to our <a href="!#" style={{color:"dodgerblue"}}>Terms & Privacy</a>.</p>
+        <p>By creating an account you agree to our <a href="#" style={{color:"dodgerblue"}}>Terms & Privacy</a>.</p>
 
         <div class="clearfix">
           <button type="submit" className="signupbtn">Sign Up</button>
@@ -73,4 +79,4 @@ const SignUp = () => {
 </>)
 }
 
-export default SignUp
+export default MemberRegister

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Navi.css'
+import '../styles/Nav.css'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -9,7 +9,6 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -81,10 +80,10 @@ export default function SearchAppBar() {
             </IconButton>
             <Typography className={classes.title} variant="h6" noWrap>
               <Link to='/home'>Home</Link>&nbsp;&nbsp;
-              <Link to='/user'>User</Link>&nbsp;&nbsp;
+              <Link to='/member'>Member</Link>&nbsp;&nbsp;
               <Link to='/item'>Item</Link>&nbsp;&nbsp;
-              <Link to='/Board'>Board</Link>&nbsp;&nbsp;
-              <Link to='/stock'>Stock</Link>
+              <Link to='/board'>Board</Link>&nbsp;&nbsp;
+              <Link to='/stock'>Stock</Link>&nbsp;&nbsp;
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>

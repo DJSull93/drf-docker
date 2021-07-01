@@ -1,11 +1,11 @@
 import React from 'react'
-import { UserMenu as Menu } from '../common'
+import { MemberMenu as Menu } from '../common'
 import './table.style.css'
 
-const User = ({children}) => (<>
+const Member = ({children}) => (<>
     <h1>User</h1>
     <Menu/>
     {children}
 </>)
 
-export default User
+export default Member

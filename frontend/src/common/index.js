@@ -1,2 +1,2 @@
-export { default as Navi } from './Navi'
-export { UserMenu, ArticleMenu, ItemMenu, BoardMenu, StockMenu } from './Menu'
+export { default as Nav } from './components/Nav'
+export { MemberMenu, BoardMenu, ItemMenu, StockMenu } from './components/Menu'
