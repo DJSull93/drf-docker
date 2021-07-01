@@ -10,6 +10,8 @@ import Paper from '@material-ui/core/Paper';
 import Pagination from '@material-ui/lab/Pagination';
 import { memberList } from 'api'
 
+
+
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -36,7 +38,6 @@ const MemberList = () => {
   useEffect(() => {
     memberList()
     .then(res => {
-        console.log(res.data)
         setMembers(res.data)
     })
     .catch(err => {
@@ -57,22 +58,20 @@ const MemberList = () => {
         </TableHead>
         <TableBody>
           { members.length != 0
-           ? members.map((member) => {
+           ? members.map((member) => (
                <TableRow key={member.username}>
-               <TableCell component="th" scope="row">
-               {member.password}
-               </TableCell>
-               <TableCell align="right">{member.name}</TableCell>
-               <TableCell align="right">{member.email}</TableCell>
-           </TableRow>
-          })
+                 <TableCell align="right">{member.username}</TableCell>
+                <TableCell component="th" scope="row">{member.password}</TableCell>
+                <TableCell align="right">{member.name}</TableCell>
+                <TableCell align="right">{member.email}</TableCell>
+            </TableRow>)
+          )
           :  <TableRow>
           <TableCell component="th" scope="row" colSpan="4">
              <h1>등록된 데이터가 없습니다</h1>
           </TableCell>
         
-      </TableRow>
-          }
+      </TableRow>}
         </TableBody>
       </Table>
     </TableContainer>
@@ -83,14 +82,3 @@ const MemberList = () => {
 }
 
 export default MemberList
-
-/*
- <TableRow key={row.name}>
-    <TableCell component="th" scope="row">
-    {row.name}
-    </TableCell>
-    <TableCell align="right">{row.calories}</TableCell>
-    <TableCell align="right">{row.fat}</TableCell>
-    <TableCell align="right">{row.carbs}</TableCell>
-</TableRow>
-*/

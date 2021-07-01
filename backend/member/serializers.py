@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import MemberVO as member
 from icecream import ic
 
+
 class MemberSerializer(serializers.Serializer):
     # pk인 id는 99퍼센트 수정 안 할 것이므로 read_only
     username = serializers.CharField()

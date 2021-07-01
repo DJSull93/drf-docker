@@ -1,5 +1,6 @@
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
+from rest_framework.response import Response
 from rest_framework import status
 from member.models import MemberVO
 from member.serializers import MemberSerializer
@@ -12,10 +13,8 @@ from icecream import ic
 def members(request):
     if request.method == 'GET':
         all_members = MemberVO.objects.all()
-        ic(type(all_members))
         serializer = MemberSerializer(all_members, many=True)
-        ic(type(serializer.data))
-        return JsonResponse(serializer.data, safe=False)
+        return JsonResponse(data=serializer.data, safe=False)
     elif request.method == 'POST':
         new_member = request.data['body']
         ic(new_member)
