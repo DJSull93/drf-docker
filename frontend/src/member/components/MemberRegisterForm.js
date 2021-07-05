@@ -3,28 +3,30 @@ import '../styles/MemberRegister.css'
 import { memberRegister } from 'api'
 import { useHistory } from 'react-router'
 
-const MemberRegister = () => {
+const MemberRegisterForm = () => {
   const history = useHistory()
-  const [MemberInfo, setMemberInfo] = useState({
+  const [memberInfo, setMemberInfo] = useState({
     username: '',
     password: '',
     name: '',
     email: ''
   })
 
-  const {username, password, name, email} = `MemberInfo`
+  const {username, password, name, email} = `memberInfo`
 
 
   const handleSubmit = e => {
     e.preventDefault()
-    alert(`전송 클릭: ${JSON.stringify({...MemberInfo})}`)
-    memberRegister({...MemberInfo})
-    .then((res) => {
+    alert(`전송 클릭: ${JSON.stringify({...memberInfo})}`)
+    memberRegister({...memberInfo})
+    .then(res => {
       alert(`회원가입 완료 : ${res.data.result} `)
-      // history.push('login')
+      history.push('login')
+      
     })
     .catch(err => {
       alert(`회원가입 실패 : ${err} `)
+
     })
 
 
@@ -39,7 +41,7 @@ const MemberRegister = () => {
   const handleChange = e => {
     const { name, value } = e.target
     setMemberInfo({
-      ...MemberInfo,
+      ...memberInfo,
       [name]: value
     })
 
@@ -79,4 +81,4 @@ const MemberRegister = () => {
 </>)
 }
 
-export default MemberRegister
+export default MemberRegisterForm

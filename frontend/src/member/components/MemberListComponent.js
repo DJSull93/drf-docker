@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Pagination from '@material-ui/lab/Pagination';
 import { memberList } from 'api'
-
+import { Link } from "react-router-dom";
 
 
 const useStyles = makeStyles({
@@ -28,7 +28,7 @@ const usePageStyles = makeStyles((theme) => ({
 
 
 
-const MemberList = () => {
+const MemberListComponent = ({ match }) => {
   
   const [members, setMembers] = useState([])
 
@@ -45,6 +45,11 @@ const MemberList = () => {
     })
   }, [])
 
+  const handleClick = member => {
+    localStorage.setItem("selectedMember", member)
+  }
+
+
   return (<>
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
@@ -58,12 +63,13 @@ const MemberList = () => {
         </TableHead>
         <TableBody>
           { members.length != 0
-           ? members.map((member) => (
-               <TableRow key={member.username}>
-                 <TableCell align="right">{member.username}</TableCell>
-                <TableCell component="th" scope="row">{member.password}</TableCell>
-                <TableCell align="right">{member.name}</TableCell>
-                <TableCell align="right">{member.email}</TableCell>
+           ? members.map(({ username, password, name, email }) => (
+               <TableRow key={ username } >
+                 <TableCell align="right">{ username }</TableCell>
+                <TableCell component="th" scope="row">{ password }</TableCell>
+                <TableCell align="right"><Link to={`/member-detail/${ username }`} 
+                onClick={ () => handleClick( JSON.stringify({ username, password, name, email }) )}>{ name }</Link></TableCell>
+                <TableCell align="right">{ email }</TableCell>
             </TableRow>)
           )
           :  <TableRow>
@@ -71,7 +77,8 @@ const MemberList = () => {
              <h1>등록된 데이터가 없습니다</h1>
           </TableCell>
         
-      </TableRow>}
+      </TableRow>
+          }
         </TableBody>
       </Table>
     </TableContainer>
@@ -81,4 +88,15 @@ const MemberList = () => {
     </>);
 }
 
-export default MemberList
+export default MemberListComponent
+
+/*
+ <TableRow key={row.name}>
+    <TableCell component="th" scope="row">
+    {row.name}
+    </TableCell>
+    <TableCell align="right">{row.calories}</TableCell>
+    <TableCell align="right">{row.fat}</TableCell>
+    <TableCell align="right">{row.carbs}</TableCell>
+</TableRow>
+*/
