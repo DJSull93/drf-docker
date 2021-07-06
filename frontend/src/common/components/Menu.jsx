@@ -1,11 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router'
-
 export const MemberMenu = () => { 
+    
     const history = useHistory()
     
     return ( <nav>
+       
+            
             {
                 localStorage.getItem("loginedMember") === '' ?
                 <ol>
@@ -28,9 +30,8 @@ export const MemberMenu = () => {
             
        
         </nav>
-)}
-
-
+)   
+    }
 export const ItemMenu = () => (<nav>
     <ol>
         <li><Link to='/item-list'>아이템목록</Link></li>

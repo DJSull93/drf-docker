@@ -1,10 +1,10 @@
 import axios from 'axios'
 
 const SERVER = 'http://127.0.0.1:8000/'
-const headers = {'Content-Type':'application/json'}
+const headers = {'Content-Type': 'application/json'}
 /* Board */
 export const postDetail = body => axios.post(`${SERVER}api/post/detail`,{headers, body})
-export const postDelete = body => axios.post(`${SERVER}api//delete`,{headers, body})
+export const postDelete = body => axios.post(`${SERVER}api/post/delete`,{headers, body})
 export const postList = body => axios.post(`${SERVER}api/post/list`,{headers, body})
 export const postModify = body => axios.post(`${SERVER}api/post/modify`,{headers, body})
 export const postRegister = body => axios.post(`${SERVER}api/post/register`,{headers, body})
@@ -20,7 +20,7 @@ export const itemRegister = body => axios.post(`${SERVER}item/register`,{headers
 export const itemRetrieve = body => axios.post(`${SERVER}item/retrieve`,{headers, body})
 /* Member */
 export const memberDetail = id => axios.get(`${SERVER}api/member/detail/${id}`)
-export const memberDelete = body => axios.delete(`${SERVER}api/member/delete`,{headers, body})
+export const memberDelete = id => axios.delete(`${SERVER}api/member/delete/${id}`)
 export const memberList = () => axios.get(`${SERVER}adm/member/list`)
 export const memberLogin = body => axios.post(`${SERVER}api/member/login`,{headers, body})
 export const memberModify = body => axios.put(`${SERVER}api/member/modify`,{headers, body})
