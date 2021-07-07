@@ -45,7 +45,7 @@ def member(request, pk):
     elif request.method == 'DELETE':
         MemberVO.objects.get(username=pk).delete()
         return JsonResponse({'result': 'Deleted Complete'}, status=201)
-
+#############
 @api_view(['PUT'])
 def member_modify(request):
     data = request.data['body']
