@@ -81,4 +81,3 @@ def login(request):
 
 
     return HttpResponse(status=104)
-########################################
